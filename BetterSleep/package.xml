@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>Better Sleep</title>
+  <id>omegaplatinum.elin.bettersleep</id>
+  <author>OmegaPlatinum</author>
+  <loadPriority>100</loadPriority>
+  <description>
+    Supports Game Version: 0.23.43
+
+    Customize sleep behavior for the player character with configurable settings.
+
+    - Allows you to force the player character to always be able to sleep.
+    - Includes options to enable or disable the mod entirely.
+    - Lets you define the sleep behavior to suit your needs.
+    - In-game keybindings allow you to increase or decrease sleep hours dynamically.
+
+    [h1] Configuration Variables [/h1]
+
+    [h2] Enable Better Sleep [/h2]
+    Enable or disable the Better Sleep mod.
+    [code] Default: true [/code]
+
+    [h2] Can Sleep Value [/h2]
+    Set whether the player character can always sleep.
+    [code] Default: true [/code]
+
+    [h2] Sleep Hours [/h2]
+    Set the default number of hours for sleep events.
+    You can adjust this in-game using keybindings.
+    [code] Default: 6 [/code]
+
+    [h2] Ignore Auto Save [/h2]
+    Skip autosaving during sleep events.
+    [code] Default: false [/code]
+
+    [h2] Key to Increase Sleep Hours [/h2]
+    Increase sleep hours dynamically in-game by pressing this key.
+    [code] Default: Equals (=) [/code]
+
+    [h2] Key to Decrease Sleep Hours [/h2]
+    Decrease sleep hours dynamically in-game by pressing this key.
+    [code] Default: Minus (-) [/code]
+
+    [h1] Configuration File Location [/h1]
+    [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
+
+    プレイヤーキャラクターの睡眠挙動をカスタマイズできます。
+
+    - プレイヤーキャラクターが常に眠れるように強制することができます。
+    - MOD全体を有効または無効にするオプションが含まれています。
+    - あなたのニーズに合わせて睡眠の挙動を定義できます。
+    - ゲーム内でキー操作により、睡眠時間を動的に調整できます。
+
+    [h1] 設定変数 [/h1]
+
+    [h2] ベター・スリープを有効化 [/h2]
+    ベター・スリープMODを有効または無効にします。
+    [code] デフォルト: true [/code]
+
+    [h2] 睡眠可能値 [/h2]
+    プレイヤーキャラクターが常に眠れるかどうかを設定します。
+    [code] デフォルト: true [/code]
+
+    [h2] 睡眠時間 [/h2]
+    睡眠イベント中のデフォルトの時間数を設定します。
+    ゲーム内でキー操作により調整可能です。
+    [code] デフォルト: 6 [/code]
+
+    [h2] オートセーブを無視する [/h2]
+    睡眠イベント中にオートセーブをスキップするかどうかを設定します。
+    [code] デフォルト: false [/code]
+
+    [h2] 睡眠時間を増やすキー [/h2]
+    ゲーム内で睡眠時間を増やすためのキーを設定します。
+    [code] デフォルト: イコール (=) [/code]
+
+    [h2] 睡眠時間を減らすキー [/h2]
+    ゲーム内で睡眠時間を減らすためのキーを設定します。
+    [code] デフォルト: マイナス (-) [/code]
+
+    [h1] 設定ファイルの場所 [/h1]
+    [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
+  </description>
+  <version>0.23.43</version>
+</Meta>
