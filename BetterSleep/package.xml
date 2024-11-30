@@ -9,9 +9,9 @@
 
     Customize sleep behavior for the player character with configurable settings.
 
-    - Allows you to force the player character to always be able to sleep.
+    - NEW: Introduces a sleep power multiplier to enhance stats recovery during sleep.
     - Includes options to enable or disable the mod entirely.
-    - Lets you define the sleep behavior to suit your needs.
+    - Allows you to force the player character to always be able to sleep.
     - In-game keybindings allow you to increase or decrease sleep hours dynamically.
     - Optionally skips autosaving during sleep events.
 
@@ -42,14 +42,25 @@
     Decrease sleep hours dynamically in-game by pressing this key.
     [code] Default: Minus (-) [/code]
 
+    [h2] Enable Power Multiplier [/h2]
+    Enable or disable the power multiplier for sleep recovery stats.
+    [code] Default: false [/code]
+
+    [h2] Sleep Power Multiplier [/h2]
+    Multiplier for the power value during sleep. This affects:
+    - HP healing
+    - Stamina recovery
+    - Mana restoration
+    [code] Default: 1 [/code]
+
     [h1] Configuration File Location [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
     プレイヤーキャラクターの睡眠挙動をカスタマイズできます。
 
-    - プレイヤーキャラクターが常に眠れるように強制することができます。
+    - 新機能: 睡眠中の回復ステータスを強化するパワー乗数を追加。
     - MOD全体を有効または無効にするオプションが含まれています。
-    - あなたのニーズに合わせて睡眠の挙動を定義できます。
+    - プレイヤーキャラクターが常に眠れるように強制することができます。
     - ゲーム内でキー操作により、睡眠時間を動的に調整できます。
     - 睡眠イベント中のオートセーブをスキップしてゲーム体験を妨げません。
 
@@ -80,8 +91,19 @@
     ゲーム内で睡眠時間を減らすためのキーを設定します。
     [code] デフォルト: マイナス (-) [/code]
 
+    [h2] パワー乗数を有効化 [/h2]
+    睡眠中の回復ステータスを強化するパワー乗数を有効または無効にします。
+    [code] デフォルト: false [/code]
+
+    [h2] 睡眠パワー乗数 [/h2]
+    睡眠中のパワー値に乗じる倍率を設定します。これには以下が影響します:
+    - HP回復
+    - スタミナ回復
+    - マナ回復
+    [code] デフォルト: 1 [/code]
+
     [h1] 設定ファイルの場所 [/h1]
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
   </description>
-  <version>0.23.43</version>
+  <version>1.1.0</version>
 </Meta>

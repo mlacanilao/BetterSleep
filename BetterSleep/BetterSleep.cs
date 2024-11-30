@@ -8,7 +8,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "1.0.0.0";
+        internal const string Version = "1.1.0.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -95,6 +95,20 @@ namespace BetterSleep
             if (BetterSleepConfig.EnableBetterSleep?.Value == true)
             {
                 ELayer.debug.ignoreAutoSave = BetterSleepConfig.IgnoreAutoSave?.Value ?? false;
+            }
+        }
+    }
+    
+    [HarmonyPatch(typeof(Chara), nameof(Chara.OnSleep), new[] { typeof(int), typeof(int) })]
+    internal static class OnSleepPatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(ref int power, int days)
+        {
+            if (BetterSleepConfig.EnableBetterSleep?.Value == true && BetterSleepConfig.EnableSleepPowerMultiplier?.Value == true)
+            {
+                int multiplier = BetterSleepConfig.SleepPowerMultiplier?.Value ?? 1;
+                power *= multiplier;
             }
         }
     }

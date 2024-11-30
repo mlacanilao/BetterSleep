@@ -11,6 +11,8 @@ namespace BetterSleep
         internal static ConfigEntry<bool> IgnoreAutoSave;
         internal static ConfigEntry<KeyCode> IncreaseSleepHoursKey;
         internal static ConfigEntry<KeyCode> DecreaseSleepHoursKey;
+        internal static ConfigEntry<bool> EnableSleepPowerMultiplier;
+        internal static ConfigEntry<int> SleepPowerMultiplier;
 
         internal static void LoadConfig(ConfigFile config)
         {
@@ -63,6 +65,30 @@ namespace BetterSleep
                 defaultValue: KeyCode.Minus,
                 description: "Key to decrease the sleep hours in-game.\n" +
                              "ゲーム内で睡眠時間を減らすためのキーを設定します。");
+
+            EnableSleepPowerMultiplier = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Sleep Power Multiplier",
+                defaultValue: false,
+                description: "Enable or disable the sleep power multiplier.\n" +
+                             "Set to 'true' to activate the multiplier, or 'false' to disable it.\n" +
+                             "睡眠パワー乗数を有効または無効にします。\n" +
+                             "'true' に設定すると乗数が有効になり、'false' に設定すると無効になります。");
+
+            SleepPowerMultiplier = config.Bind(
+                section: ModInfo.Name,
+                key: "Sleep Power Multiplier",
+                defaultValue: 1,
+                description: "Multiplier for the power value during sleep. Must be a whole number.\n" +
+                             "This multiplier affects the following:\n" +
+                             "- HP healing\n" +
+                             "- Stamina recovery\n" +
+                             "- Mana restoration\n" +
+                             "睡眠中のパワー値に乗じる倍率を設定します。整数のみ。\n" +
+                             "これには以下が影響します:\n" +
+                             "- HP回復\n" +
+                             "- スタミナ回復\n" +
+                             "- マナ回復");
         }
     }
 }
