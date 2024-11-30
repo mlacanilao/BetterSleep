@@ -11,7 +11,7 @@
 
     - NEW: Introduces a sleep power multiplier to enhance stats recovery during sleep.
     - Includes options to enable or disable the mod entirely.
-    - Allows you to force the player character to always be able to sleep.
+    - Control whether the player character can sleep anytime or disable sleeping completely.
     - In-game keybindings allow you to increase or decrease sleep hours dynamically.
     - Optionally skips autosaving during sleep events.
 
@@ -21,8 +21,14 @@
     Enable or disable the Better Sleep mod.
     [code] Default: true [/code]
 
-    [h2] Can Sleep Value [/h2]
-    Set whether the player character can always sleep.
+    [h2] Enable Can Sleep [/h2]
+    Enable or disable the custom "Can Sleep" logic.
+    Set to [b]true[/b] to use the mod's sleep logic, or [b]false[/b] to follow the game's normal behavior.
+    [code] Default: true [/code]
+
+    [h2] Can Sleep [/h2]
+    Control whether the player character is allowed to sleep.
+    Set to [b]true[/b] to allow sleeping anytime, or [b]false[/b] to disable sleeping completely.
     [code] Default: true [/code]
 
     [h2] Sleep Hours [/h2]
@@ -60,7 +66,7 @@
 
     - 新機能: 睡眠中の回復ステータスを強化するパワー乗数を追加。
     - MOD全体を有効または無効にするオプションが含まれています。
-    - プレイヤーキャラクターが常に眠れるように強制することができます。
+    - プレイヤーキャラクターがいつでも眠れるようにするか、完全に眠れないようにするかを制御できます。
     - ゲーム内でキー操作により、睡眠時間を動的に調整できます。
     - 睡眠イベント中のオートセーブをスキップしてゲーム体験を妨げません。
 
@@ -70,8 +76,14 @@
     ベター・スリープMODを有効または無効にします。
     [code] デフォルト: true [/code]
 
-    [h2] 睡眠可能値 [/h2]
-    プレイヤーキャラクターが常に眠れるかどうかを設定します。
+    [h2] 睡眠可能を有効化 [/h2]
+    カスタムの「眠れるかどうか」ロジックを有効または無効にします。
+    [b]true[/b] に設定するとMODのロジックを使用し、[b]false[/b] に設定するとゲームの通常のルールに従います。
+    [code] デフォルト: true [/code]
+
+    [h2] 睡眠可能 [/h2]
+    プレイヤーキャラクターが眠れるようにするかどうかを設定します。
+    [b]true[/b] に設定するといつでも眠れるようになり、[b]false[/b] に設定すると眠ることが完全に無効になります。
     [code] デフォルト: true [/code]
 
     [h2] 睡眠時間 [/h2]

@@ -6,7 +6,8 @@ namespace BetterSleep
     internal static class BetterSleepConfig
     {
         internal static ConfigEntry<bool> EnableBetterSleep;
-        internal static ConfigEntry<bool> CanSleepValue;
+        internal static ConfigEntry<bool> EnableCanSleep;
+        internal static ConfigEntry<bool> CanSleep;
         internal static ConfigEntry<int> SleepHours;
         internal static ConfigEntry<bool> IgnoreAutoSave;
         internal static ConfigEntry<KeyCode> IncreaseSleepHoursKey;
@@ -25,14 +26,23 @@ namespace BetterSleep
                              "ベター・スリープMODを有効または無効にします。\n" +
                              "'true' に設定するとMODが有効になり、'false' に設定するとゲームのデフォルトのままになります。");
 
-            CanSleepValue = config.Bind(
+            EnableCanSleep = config.Bind(
                 section: ModInfo.Name,
-                key: "Can Sleep Value",
+                key: "Enable Can Sleep",
                 defaultValue: true,
-                description: "Control whether the player character is always allowed to sleep.\n" +
-                             "Set to 'true' to allow sleeping anytime, or 'false' to follow the game's normal sleep rules.\n" +
-                             "プレイヤーキャラクターが常に眠れるようにするかどうかを設定します。\n" +
-                             "'true' に設定すると、いつでも眠ることができ、'false' に設定するとゲームの通常の睡眠ルールに従います。");
+                description: "Enable or disable the custom 'Can Sleep' behavior.\n" +
+                             "Set to 'true' to use the custom Can Sleep logic, or 'false' to disable it.\n" +
+                             "カスタムの「眠れるかどうか」の動作を有効または無効にします。\n" +
+                             "'true' に設定するとカスタムロジックが使用され、'false' に設定すると無効になります。");
+
+            CanSleep = config.Bind(
+                section: ModInfo.Name,
+                key: "Can Sleep",
+                defaultValue: true,
+                description: "Control whether the player character is allowed to sleep.\n" +
+                             "Set to 'true' to allow sleeping anytime, or 'false' to disable sleeping completely.\n" +
+                             "プレイヤーキャラクターが眠れるようにするかどうかを設定します。\n" +
+                             "'true' に設定するといつでも眠ることができ、'false' に設定すると眠ることが完全に無効になります。");
 
             SleepHours = config.Bind(
                 section: ModInfo.Name,

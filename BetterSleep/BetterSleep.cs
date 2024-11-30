@@ -8,7 +8,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "1.1.0.0";
+        internal const string Version = "1.1.1.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -63,9 +63,9 @@ namespace BetterSleep
         [HarmonyPrefix]
         public static bool Prefix(Chara __instance, ref bool __result)
         {
-            if (BetterSleepConfig.EnableBetterSleep?.Value == true)
+            if (BetterSleepConfig.EnableBetterSleep?.Value == true && BetterSleepConfig.EnableCanSleep?.Value == true)
             {
-                __result = BetterSleepConfig.CanSleepValue?.Value ?? true;
+                __result = BetterSleepConfig.CanSleep?.Value ?? true;
                 return false;
             }
 
