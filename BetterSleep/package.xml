@@ -13,6 +13,7 @@
     - Includes options to enable or disable the mod entirely.
     - Lets you define the sleep behavior to suit your needs.
     - In-game keybindings allow you to increase or decrease sleep hours dynamically.
+    - Optionally skips autosaving during sleep events.
 
     [h1] Configuration Variables [/h1]
 
@@ -30,7 +31,7 @@
     [code] Default: 6 [/code]
 
     [h2] Ignore Auto Save [/h2]
-    Skip autosaving during sleep events.
+    Skip autosaving during sleep events for uninterrupted gameplay.
     [code] Default: false [/code]
 
     [h2] Key to Increase Sleep Hours [/h2]
@@ -50,6 +51,7 @@
     - MOD全体を有効または無効にするオプションが含まれています。
     - あなたのニーズに合わせて睡眠の挙動を定義できます。
     - ゲーム内でキー操作により、睡眠時間を動的に調整できます。
+    - 睡眠イベント中のオートセーブをスキップしてゲーム体験を妨げません。
 
     [h1] 設定変数 [/h1]
 
