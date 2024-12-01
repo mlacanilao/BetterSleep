@@ -1,4 +1,6 @@
-﻿using BepInEx;
+﻿using System;
+using System.Collections.Generic;
+using BepInEx;
 using HarmonyLib;
 using UnityEngine;
 
@@ -8,7 +10,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "1.1.1.0";
+        internal const string Version = "1.2.0.0";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -51,7 +53,6 @@ namespace BetterSleep
                 int newSleepHours = BetterSleepConfig.SleepHours.Value + adjustment;
                 newSleepHours = Mathf.Clamp(value: newSleepHours, min: 1, max: 12);
                 BetterSleepConfig.SleepHours.Value = newSleepHours;
-
                 ELayer.pc.TalkRaw(text: $"Sleep hours updated to: {newSleepHours}", ref1: null, ref2: null, forceSync: false);
             }
         }
@@ -63,12 +64,20 @@ namespace BetterSleep
         [HarmonyPrefix]
         public static bool Prefix(Chara __instance, ref bool __result)
         {
-            if (BetterSleepConfig.EnableBetterSleep?.Value == true && BetterSleepConfig.EnableCanSleep?.Value == true)
+            if (BetterSleepConfig.EnableBetterSleep?.Value == true &&
+                BetterSleepConfig.EnableSleepDuringMeditate?.Value == false &&
+                __instance.ai is AI_Meditate)
+            {
+                return true;
+            }
+            
+            if (BetterSleepConfig.EnableBetterSleep?.Value == true && 
+                BetterSleepConfig.EnableCanSleep?.Value == true)
             {
                 __result = BetterSleepConfig.CanSleep?.Value ?? true;
                 return false;
             }
-
+            
             return true;
         }
     }
@@ -99,7 +108,7 @@ namespace BetterSleep
         }
     }
     
-    [HarmonyPatch(typeof(Chara), nameof(Chara.OnSleep), new[] { typeof(int), typeof(int) })]
+    [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int) })]
     internal static class OnSleepPatch
     {
         [HarmonyPrefix]
