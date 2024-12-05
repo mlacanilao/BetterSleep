@@ -5,10 +5,12 @@ namespace BetterSleep
 {
     internal static class BetterSleepConfig
     {
-        internal static ConfigEntry<bool> EnableBetterSleep;
+        internal static ConfigEntry<bool> EnableBetterSleepMod;
         internal static ConfigEntry<bool> EnableCanSleep;
         internal static ConfigEntry<bool> CanSleep;
+        internal static ConfigEntry<bool> EnableSleepHours;
         internal static ConfigEntry<int> SleepHours;
+        internal static ConfigEntry<bool> EnableIgnoreAutoSave;
         internal static ConfigEntry<bool> IgnoreAutoSave;
         internal static ConfigEntry<KeyCode> IncreaseSleepHoursKey;
         internal static ConfigEntry<KeyCode> DecreaseSleepHoursKey;
@@ -18,9 +20,9 @@ namespace BetterSleep
 
         internal static void LoadConfig(ConfigFile config)
         {
-            EnableBetterSleep = config.Bind(
+            EnableBetterSleepMod = config.Bind(
                 section: ModInfo.Name,
-                key: "Enable Better Sleep",
+                key: "Enable Better Sleep Mod",
                 defaultValue: true,
                 description: "Enable or disable the Better Sleep mod.\n" +
                              "Set to 'true' to activate the mod, or 'false' to keep the game unchanged.\n" +
@@ -45,6 +47,15 @@ namespace BetterSleep
                              "プレイヤーキャラクターがいつでも眠れるかどうかを設定します。\n" +
                              "'true' にすると常に眠ることができ、'false' にすると完全に眠れなくなります。");
 
+            EnableSleepHours = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Sleep Hours",
+                defaultValue: true,
+                description: "Enable or disable setting custom sleep hours.\n" +
+                             "Set to 'true' to allow customizing sleep hours, or 'false' to disable this option.\n" +
+                             "カスタム睡眠時間の設定を有効または無効にします。\n" +
+                             "'true' にすると睡眠時間をカスタマイズでき、'false' にすると無効になります。");
+
             SleepHours = config.Bind(
                 section: ModInfo.Name,
                 key: "Sleep Hours",
@@ -53,6 +64,15 @@ namespace BetterSleep
                              "You can also adjust this value in-game by pressing the configured keys.\n" +
                              "睡眠イベントでの睡眠時間を設定します。\n" +
                              "設定されたキーを使ってゲーム内でこの値を調整することもできます。");
+
+            EnableIgnoreAutoSave = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Ignore Auto Save",
+                defaultValue: true,
+                description: "Enable or disable the 'Ignore Auto Save' feature.\n" +
+                             "Set to 'true' to allow ignoring autosaves during sleep, or 'false' to always autosave.\n" +
+                             "「オートセーブを無視」を有効または無効にします。\n" +
+                             "'true' にすると睡眠中にオートセーブを無視し、'false' にすると常にオートセーブされます。");
 
             IgnoreAutoSave = config.Bind(
                 section: ModInfo.Name,
@@ -74,8 +94,8 @@ namespace BetterSleep
                 section: ModInfo.Name,
                 key: "Decrease Sleep Hours Key",
                 defaultValue: KeyCode.Minus,
-                description: "ゲーム内で睡眠時間を減らすためのキーを設定します。\n" +
-                             "Key to decrease the sleep hours in-game.");
+                description: "Key to decrease the sleep hours in-game.\n" +
+                             "ゲーム内で睡眠時間を減らすためのキーを設定します。");
 
             EnableSleepPowerMultiplier = config.Bind(
                 section: ModInfo.Name,
@@ -106,7 +126,7 @@ namespace BetterSleep
                 key: "Enable Sleep During Meditate",
                 defaultValue: false,
                 description: "Enable or disable sleep during Meditate.\n" +
-                             "Set to 'true' to allow Better Sleep behavior during Meditate, or 'false' to default sleep behavior.\n" +
+                             "Set to 'true' to allow Better Sleep mod behavior during Meditate, or 'false' to use default behavior.\n" +
                              "瞑想中に睡眠を有効または無効にします。\n" +
                              "'true' にするとベター・スリープの動作が瞑想中でも有効になり、'false' にすると通常の睡眠動作になります。");
         }

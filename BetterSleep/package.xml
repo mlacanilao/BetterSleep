@@ -5,125 +5,58 @@
   <author>OmegaPlatinum</author>
   <loadPriority>100</loadPriority>
   <description>
-    Supports Game Version: 0.23.45
+    Supports Game Version: 0.23.46
 
-    Customize sleep behavior for the player character with configurable settings.
+    Customize sleep behavior for the player character with an in-game configuration menu.
+    [list]
+    [*]Introduced a comprehensive configuration menu for managing all mod settings.
+    [*]Includes configurable options for features like "Can Sleep," "Sleep Hours," and "Ignore Auto Save."
+    [*]Easily toggle the Better Sleep mod on or off directly from the in-game menu.
+    [*]Dynamic keybindings allow adjustments to sleep hours during gameplay.
+    [*]Added a "Sleep Power Multiplier" to enhance recovery stats during sleep.
+    [*]Includes an option to skip autosaving during sleep events.
+    [*]No game restart required. Changes take effect immediately.
+    [/list]
 
-    - NEW: Adds a configurable option to skip Better Sleep during Meditate.
-    - Includes options to enable or disable the mod entirely.
-    - Control whether the player character can sleep anytime or disable sleeping completely.
-    - In-game keybindings allow you to dynamically adjust sleep hours.
-    - Optionally skips autosaving during sleep events.
-    - Introduces a sleep power multiplier to enhance stats recovery during sleep.
-
-    [h1] Configuration Variables [/h1]
-
-    [h2] Enable Better Sleep [/h2]
-    Enable or disable the Better Sleep mod.
-    [code] Default: true [/code]
-
-    [h2] Enable Can Sleep [/h2]
-    Enable or disable the custom "Can Sleep" behavior.
-    Set to [b]true[/b] to use the mod's custom logic, or [b]false[/b] to use the game's default behavior.
-    [code] Default: true [/code]
-
-    [h2] Can Sleep [/h2]
-    Control whether the player character is allowed to sleep.
-    Set to [b]true[/b] to allow sleeping anytime, or [b]false[/b] to disable sleeping completely.
-    [code] Default: true [/code]
-
-    [h2] Sleep Hours [/h2]
-    Set the default number of hours for sleep events.
-    You can adjust this value in-game using configured keybindings.
-    [code] Default: 6 [/code]
-
-    [h2] Ignore Auto Save [/h2]
-    Skip autosaving during sleep events for uninterrupted gameplay.
-    [code] Default: false [/code]
-
-    [h2] Increase Sleep Hours Key [/h2]
-    Configure the key to increase the sleep hours dynamically in-game.
-    [code] Default: Equals (=) [/code]
-
-    [h2] Decrease Sleep Hours Key [/h2]
-    Configure the key to decrease the sleep hours dynamically in-game.
-    [code] Default: Minus (-) [/code]
-
-    [h2] Enable Sleep Power Multiplier [/h2]
-    Enable or disable the sleep power multiplier.
-    [code] Default: true [/code]
-
-    [h2] Sleep Power Multiplier [/h2]
-    Multiplier for the power value during sleep. This affects:
-    - HP healing
-    - Stamina recovery
-    - Mana restoration
-    [code] Default: 1 [/code]
-
-    [h2] Enable Sleep During Meditate [/h2]
-    Enable or disable sleep during Meditate.
-    Set to [b]true[/b] to allow Better Sleep behavior during Meditate, or [b]false[/b] to use default behavior.
-    [code] Default: false [/code]
+    [h1] Configuration Menu [/h1]
+    Access the in-game menu to customize all features easily. Adjust settings for:
+    [list]
+    [*]Enabling or disabling the mod
+    [*]Sleep behavior controls (e.g., "Can Sleep" and "Sleep Hours")
+    [*]Autosave preferences during sleep events
+    [*]Stat recovery multipliers for HP, stamina, and mana
+    [*]Behavior during meditation events
+    [/list]
 
     [h1] Configuration File Location [/h1]
+    If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    プレイヤーキャラクターの睡眠挙動をカスタマイズできます。
+    プレイヤーキャラクターの睡眠挙動をカスタマイズするための直感的なゲーム内設定メニューを追加しました。
+    [list]
+    [*]すべてのMOD設定を管理する包括的な設定メニューを導入。
+    [*]「眠れるかどうか」や「睡眠時間」などの機能の設定オプションを追加。
+    [*]ゲーム内メニューからベター・スリープMODを簡単に有効または無効に切り替え可能。
+    [*]ゲームプレイ中に睡眠時間を調整するための動的キー設定を追加。
+    [*]睡眠中のHP、スタミナ、マナの回復ステータスを強化するパワー乗数を追加。
+    [*]睡眠イベント中のオートセーブをスキップするオプションでゲーム体験を改善。
+    [*]ゲームを再起動する必要はありません。変更は即座に反映されます。
+    [/list]
 
-    - 新機能: 瞑想中に睡眠をスキップするオプションを追加。
-    - MOD全体を有効または無効にするオプションが含まれています。
-    - プレイヤーキャラクターがいつでも眠れるようにするか、完全に眠れないようにするかを制御できます。
-    - ゲーム内でキー操作により、睡眠時間を動的に調整できます。
-    - 睡眠イベント中のオートセーブをスキップしてゲーム体験を妨げません。
-    - 睡眠中の回復ステータスを強化するパワー乗数を導入。
-
-    [h1] 設定変数 [/h1]
-
-    [h2] ベター・スリープを有効化 [/h2]
-    ベター・スリープMODを有効または無効にします。
-    [code] デフォルト: true [/code]
-
-    [h2] 睡眠可能を有効化 [/h2]
-    カスタムの「眠れるかどうか」ロジックを有効または無効にします。
-    [code] デフォルト: true [/code]
-
-    [h2] 睡眠可能 [/h2]
-    プレイヤーキャラクターが眠れるようにするかどうかを設定します。
-    [code] デフォルト: true [/code]
-
-    [h2] 睡眠時間 [/h2]
-    睡眠イベント中のデフォルトの時間数を設定します。
-    [code] デフォルト: 6 [/code]
-
-    [h2] オートセーブを無視する [/h2]
-    睡眠イベント中にオートセーブをスキップするかどうかを設定します。
-    [code] デフォルト: false [/code]
-
-    [h2] 睡眠時間を増やすキー [/h2]
-    ゲーム内で睡眠時間を増やすためのキーを設定します。
-    [code] デフォルト: イコール (=) [/code]
-
-    [h2] 睡眠時間を減らすキー [/h2]
-    ゲーム内で睡眠時間を減らすためのキーを設定します。
-    [code] デフォルト: マイナス (-) [/code]
-
-    [h2] パワー乗数を有効化 [/h2]
-    睡眠中の回復ステータスを強化するパワー乗数を有効または無効にします。
-    [code] デフォルト: true [/code]
-
-    [h2] 睡眠パワー乗数 [/h2]
-    睡眠中のパワー値に乗じる倍率を設定します。これには以下が影響します:
-    - HP回復
-    - スタミナ回復
-    - マナ回復
-    [code] デフォルト: 1 [/code]
-
-    [h2] 瞑想中の睡眠を有効化 [/h2]
-    瞑想中の睡眠を有効または無効にします。
-    [code] デフォルト: false [/code]
+    [h1] 設定メニュー [/h1]
+    ゲーム内のメニューにアクセスして、すべての機能を簡単にカスタマイズできます。設定可能な内容:
+    [list]
+    [*]MODの有効化または無効化
+    [*]睡眠挙動の制御（例:「眠れるかどうか」「睡眠時間」）
+    [*]睡眠イベント中のオートセーブの設定
+    [*]HP、スタミナ、マナの回復ステータスの乗数設定
+    [*]瞑想中の動作設定
+    [/list]
 
     [h1] 設定ファイルの場所 [/h1]
+    必要に応じて、上級ユーザーは設定ファイルを直接編集することも可能です:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
   </description>
-  <version>0.23.45</version>
+  <tags>Cheat</tags>
+  <version>0.23.46</version>
 </Meta>
