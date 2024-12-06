@@ -12,7 +12,7 @@ namespace BetterSleep
         {
             Window window = this.AddWindow(setting: new Window.Setting
             {
-                textCaption = OmegaUI.__(ja: "Better Sleep Config", en: "Better Sleep Config"),
+                textCaption = OmegaUI.__(ja: "Better Sleep 設定", en: "Better Sleep Config"),
                 bound = new Rect(x: 0f, y: 0f, width: 680f, height: 500f),
                 transparent = false,
                 allowMove = true
@@ -21,7 +21,7 @@ namespace BetterSleep
             try
             {
                 window.AddTab(
-                    idLang: OmegaUI.__(ja: "Better Sleep Config", en: "Better Sleep Config"),
+                    idLang: OmegaUI.__(ja: "Better Sleep 設定", en: "Better Sleep Config"),
                     content: OmegaUI.CreatePage<BetterSleepWidgetMain.ConfigUI>(
                         id: "bettersleep.config",
                         window: window).root,

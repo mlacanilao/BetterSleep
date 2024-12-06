@@ -8,7 +8,7 @@ namespace BetterSleep.Patches
         {
             if (menuName == "ContextSystem")
             {
-                __instance.currentMenu.AddButton(idLang: OmegaUI.__(ja: "Better Sleep Config", en: "Better Sleep Config"), action: delegate()
+                __instance.currentMenu.AddButton(idLang: OmegaUI.__(ja: "Better Sleep 設定", en: "Better Sleep Config"), action: delegate()
                 {
                     OmegaUI.OpenWidget<BetterSleepWidgetMain>();
                 }, hideAfter: true);
