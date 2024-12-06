@@ -18,7 +18,7 @@ namespace BetterSleep
         {
             BetterSleepConfig.LoadConfig(config: Config);
             Harmony.CreateAndPatchAll(type: typeof(Patcher), harmonyInstanceId: null);
-            Logger.LogInfo(data: "Plugin [BetterSleep] is loaded!");
+            Logger.LogInfo(data: "Plugin [Better Sleep] is loaded!");
         }
 
         private void Update()
