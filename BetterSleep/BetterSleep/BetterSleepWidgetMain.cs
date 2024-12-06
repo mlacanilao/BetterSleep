@@ -128,7 +128,7 @@ namespace BetterSleep
                                    "This multiplier affects the following:\n" +
                                    "- HP healing\n" +
                                    "- Stamina recovery\n" +
-                                   "- Mana restoration\n",
+                                   "- Mana restoration",
                     toggleConfig: BetterSleepConfig.EnableSleepPowerMultiplier,
                     inputConfig: BetterSleepConfig.SleepPowerMultiplier,
                     minValue: 0,
