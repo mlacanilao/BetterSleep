@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace BetterSleep.Patches
 {
     public class UIContextMenuManagerPatch
