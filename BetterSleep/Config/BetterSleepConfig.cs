@@ -5,6 +5,7 @@ namespace BetterSleep
 {
     internal static class BetterSleepConfig
     {
+        internal static ConfigEntry<bool> EnableMenu;
         internal static ConfigEntry<bool> EnableBetterSleepMod;
         internal static ConfigEntry<bool> EnableCanSleep;
         internal static ConfigEntry<bool> CanSleep;
@@ -16,10 +17,20 @@ namespace BetterSleep
         internal static ConfigEntry<KeyCode> DecreaseSleepHoursKey;
         internal static ConfigEntry<bool> EnableSleepPowerMultiplier;
         internal static ConfigEntry<int> SleepPowerMultiplier;
-        internal static ConfigEntry<bool> EnableSleepDuringMeditate;
-
+        internal static ConfigEntry<bool> EnableCanSleepDuringMeditate;
+        internal static ConfigEntry<bool> CanSleepDuringMeditate;
+        
         internal static void LoadConfig(ConfigFile config)
         {
+            EnableMenu = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Menu",
+                defaultValue: true,
+                description: "Enable or disable the in-game configuration menu for the mod.\n" +
+                             "Set to 'true' to allow access to the menu, or 'false' to disable it.\n" +
+                             "ゲーム内の設定メニューを有効または無効にします。\n" +
+                             "'true' に設定するとメニューにアクセスでき、'false' に設定すると無効になります。");
+            
             EnableBetterSleepMod = config.Bind(
                 section: ModInfo.Name,
                 key: "Enable Better Sleep Mod",
@@ -121,14 +132,23 @@ namespace BetterSleep
                              "- スタミナ回復\n" +
                              "- マナ回復");
 
-            EnableSleepDuringMeditate = config.Bind(
+            EnableCanSleepDuringMeditate = config.Bind(
                 section: ModInfo.Name,
-                key: "Enable Sleep During Meditate",
-                defaultValue: false,
+                key: "Enable Can Sleep During Meditate",
+                defaultValue: true,
                 description: "Enable or disable sleep during Meditate.\n" +
                              "Set to 'true' to allow Better Sleep mod behavior during Meditate, or 'false' to use default behavior.\n" +
                              "瞑想中に睡眠を有効または無効にします。\n" +
                              "'true' にするとベター・スリープの動作が瞑想中でも有効になり、'false' にすると通常の睡眠動作になります。");
+            
+            CanSleepDuringMeditate = config.Bind(
+                section: ModInfo.Name,
+                key: "Can Sleep During Meditate",
+                defaultValue: false,
+                description: "Control whether the player can sleep during Meditate.\n" +
+                             "Set to 'true' to allow sleeping during Meditate, or 'false' to disable it.\n" +
+                             "瞑想中に睡眠できるかどうかを設定します。\n" +
+                             "'true' にすると瞑想中でも眠れるようになり、'false' にすると無効になります。");
         }
     }
 }

@@ -5,10 +5,11 @@ namespace BetterSleep.Patches
         public static bool CanSleep(Chara __instance, ref bool __result)
         {
             if (BetterSleepConfig.EnableBetterSleepMod?.Value == true &&
-                BetterSleepConfig.EnableSleepDuringMeditate?.Value == false &&
+                BetterSleepConfig.EnableCanSleepDuringMeditate?.Value == true &&
                 __instance.ai is AI_Meditate)
             {
-                return true;
+                __result = BetterSleepConfig.CanSleepDuringMeditate?.Value ?? false;
+                return false;
             }
 
             if (BetterSleepConfig.EnableBetterSleepMod?.Value == true &&

@@ -135,13 +135,18 @@ namespace BetterSleep
                     maxValue: 100
                 );
 
-                AddEnableToggleWithDescription(parent: scrollLayout.root, 
-                    toggleName: "Enable Sleep During Meditate", 
+                AddToggleWithDropdown(
+                    parent: scrollLayout.root,
+                    toggleName: "Enable Can Sleep During Meditate",
                     jaDescription: "瞑想中に睡眠を有効または無効にします。\n" +
-                                   "'true' にするとベター・スリープの動作が瞑想中でも有効になり、'false' にすると通常の睡眠動作になります。",
-                    enDescription: "Enable or disable sleep during Meditate feature.\n" +
-                                   "Set to 'true' to allow Better Sleep mod behavior during Meditate, or 'false' to use default behavior.",
-                    configEntry: BetterSleepConfig.EnableSleepDuringMeditate);
+                                   "'true' にすると瞑想中は常に眠ることが可能になり、'false' にすると瞑想中の睡眠が完全に無効になります。",
+                    enDescription: "Enable or disable sleeping during meditation.\n" +
+                                   "Set to 'true' to allow sleeping anytime while meditating, or 'false' to disable sleeping completely during meditation.",
+                    toggleConfig: BetterSleepConfig.EnableCanSleepDuringMeditate,
+                    dropdownConfig: BetterSleepConfig.CanSleepDuringMeditate,
+                    jaDropdownLabel: "Can Sleep During Meditate",
+                    enDropdownLabel: "Can Sleep During Meditate"
+                );
 
                 ToggleFeatures(isEnabled: BetterSleepConfig.EnableBetterSleepMod.Value);
             }

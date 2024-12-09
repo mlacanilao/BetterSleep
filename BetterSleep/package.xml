@@ -9,13 +9,7 @@
 
     Customize sleep behavior for the player character with an in-game configuration menu.
     [list]
-    [*]Introduced a comprehensive configuration menu for managing all mod settings.
-    [*]Includes configurable options for features like "Can Sleep," "Sleep Hours," and "Ignore Auto Save."
-    [*]Easily toggle the Better Sleep mod on or off directly from the in-game menu.
-    [*]Dynamic keybindings allow adjustments to sleep hours during gameplay.
-    [*]Added a "Sleep Power Multiplier" to enhance recovery stats during sleep.
-    [*]Includes an option to skip autosaving during sleep events.
-    [*]No game restart required. Changes take effect immediately.
+    [*][b]NEW[/b]: Added the ability to sleep during meditation.
     [/list]
 
     [h1] Configuration Menu [/h1]
@@ -25,7 +19,7 @@
     [*]Sleep behavior controls (e.g., "Can Sleep" and "Sleep Hours")
     [*]Autosave preferences during sleep events
     [*]Stat recovery multipliers for HP, stamina, and mana
-    [*]Behavior during meditation events
+    [*]Sleep during meditation behavior
     [/list]
 
     [h1] Configuration File Location [/h1]
@@ -34,13 +28,7 @@
 
     プレイヤーキャラクターの睡眠挙動をカスタマイズするための直感的なゲーム内設定メニューを追加しました。
     [list]
-    [*]すべてのMOD設定を管理する包括的な設定メニューを導入。
-    [*]「眠れるかどうか」や「睡眠時間」などの機能の設定オプションを追加。
-    [*]ゲーム内メニューからベター・スリープMODを簡単に有効または無効に切り替え可能。
-    [*]ゲームプレイ中に睡眠時間を調整するための動的キー設定を追加。
-    [*]睡眠中のHP、スタミナ、マナの回復ステータスを強化するパワー乗数を追加。
-    [*]睡眠イベント中のオートセーブをスキップするオプションでゲーム体験を改善。
-    [*]ゲームを再起動する必要はありません。変更は即座に反映されます。
+    [*][b]新機能[/b]: 瞑想中に眠る機能を追加しました。
     [/list]
 
     [h1] 設定メニュー [/h1]
@@ -50,7 +38,7 @@
     [*]睡眠挙動の制御（例:「眠れるかどうか」「睡眠時間」）
     [*]睡眠イベント中のオートセーブの設定
     [*]HP、スタミナ、マナの回復ステータスの乗数設定
-    [*]瞑想中の動作設定
+    [*]瞑想中の睡眠挙動
     [/list]
 
     [h1] 設定ファイルの場所 [/h1]
