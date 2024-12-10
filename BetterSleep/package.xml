@@ -5,7 +5,7 @@
   <author>OmegaPlatinum</author>
   <loadPriority>100</loadPriority>
   <description>
-    Supports Game Version: 0.23.46
+    Supports Game Version: 0.23.54
 
     Customize sleep behavior for the player character with an in-game configuration menu.
     [list]
@@ -46,5 +46,5 @@
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
   </description>
   <tags>Cheat</tags>
-  <version>0.23.46</version>
+  <version>0.23.54</version>
 </Meta>
