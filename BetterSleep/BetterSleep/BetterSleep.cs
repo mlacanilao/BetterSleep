@@ -8,7 +8,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "1.4.0.0";
+        internal const string Version = "1.4.0.1";
     }
 
     [BepInPlugin(GUID: ModInfo.Guid, Name: ModInfo.Name, Version: ModInfo.Version)]
@@ -17,7 +17,7 @@ namespace BetterSleep
         private void Start()
         {
             BetterSleepConfig.LoadConfig(config: Config);
-            Harmony.CreateAndPatchAll(type: typeof(Patcher), harmonyInstanceId: null);
+            Harmony.CreateAndPatchAll(type: typeof(Patcher), harmonyInstanceId: ModInfo.Guid);
         }
 
         private void Update()

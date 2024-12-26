@@ -5,9 +5,8 @@
   <author>OmegaPlatinum</author>
   <loadPriority>100</loadPriority>
   <description>
-    Supports Game Version: 0.23.54
-
     Customize sleep behavior for the player character with an in-game configuration menu.
+    プレイヤーキャラクターの睡眠挙動をカスタマイズするための直感的なゲーム内設定メニューを追加しました。
     [list]
     [*][b]NEW[/b]: Added the ability to sleep during meditation.
     [/list]
@@ -26,7 +25,8 @@
     If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    プレイヤーキャラクターの睡眠挙動をカスタマイズするための直感的なゲーム内設定メニューを追加しました。
+    Supports Game Version: 0.23.67
+    
     [list]
     [*][b]新機能[/b]: 瞑想中に眠る機能を追加しました。
     [/list]
@@ -46,5 +46,5 @@
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
   </description>
   <tags>Cheat</tags>
-  <version>0.23.54</version>
+  <version>0.23.67</version>
 </Meta>
