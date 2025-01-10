@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ConfigLayoutSchema.xsd">
+    <hlayout id="hlayout01">
+        <vlayout id="vlayout01" border="true">
+            <title>title01</title>
+            
+            <toggle id="enableCanSleepToggle">
+                <contentId>toggle01</contentId>
+                <tooltip>tooltip01</tooltip>
+            </toggle>
+
+            <toggle id="enableAutoSaveToggle">
+                <contentId>toggle02</contentId>
+                <tooltip>tooltip02</tooltip>
+            </toggle>
+
+            <toggle id="enableOnlyUnlearnedRecipesToggle">
+                <contentId>toggle04</contentId>
+                <tooltip>tooltip04</tooltip>
+            </toggle>
+
+            <toggle id="enableCanSleepDuringMeditateToggle">
+                <contentId>toggle05</contentId>
+                <tooltip>tooltip05</tooltip>
+            </toggle>
+        </vlayout>
+
+        <vlayout id="vlayout02" border="true">
+            <topic>topic01</topic>
+            <slider id="sleepHoursSlider" min="0" max="12" buttons="true">slider01</slider>
+
+            <topic>topic02</topic>
+            <toggle id="enableSleepPowerMultiplierToggle">
+                <contentId>toggle03</contentId>
+                <tooltip>tooltip03</tooltip>
+            </toggle>
+            <slider id="sleepPowerMultiplierSlider" min="1" max="10" buttons="true"></slider>
+        </vlayout>
+    </hlayout>
+    <hlayout id="hlayout02">
+        <vlayout id="vlayout03" border="true">
+            <title>title03</title>
+
+            <hlayout id="hlayout03">
+                <vlayout id="vlayout04">
+                    <text id="text01">text01</text>
+                </vlayout>
+
+                <vlayout id="vlayout05">
+                    <one_choice id="dropdown01" type="dropdown" value="0">
+                        <choice>
+                            <contentId>dropdown01.item01</contentId>
+                        </choice>
+                    </one_choice>
+                </vlayout>
+            </hlayout>
+
+            <hlayout id="hlayout04">
+                <vlayout id="vlayout06">
+                    <text id="text02">text02</text>
+                </vlayout>
+
+                <vlayout id="vlayout07">
+                    <one_choice id="dropdown02" type="dropdown" value="0">
+                        <choice>
+                            <contentId>dropdown02.item01</contentId>
+                        </choice>
+                    </one_choice>
+                </vlayout>
+            </hlayout>
+        </vlayout>
+    </hlayout>
+</config>

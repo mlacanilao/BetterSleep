@@ -8,37 +8,37 @@ namespace BetterSleep
     {
         [HarmonyPrefix]
         [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.CanSleep))]
-        public static bool CanSleep(Chara __instance, ref bool __result)
+        public static bool CharaCanSleep(Chara __instance, ref bool __result)
         {
-            return CharaPatch.CanSleep(__instance: __instance, __result: ref __result);
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int) })]
-        public static void OnSleep(ref int power, int days)
-        {
-            CharaPatch.OnSleep(power: ref power, days: days);
-        }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
-        public static void Advance()
-        {
-            LayerSleepPatch.Advance();
+            return CharaPatch.CanSleepPrefix(__instance: __instance, __result: ref __result);
         }
         
         [HarmonyPrefix]
         [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
-        public static void Sleep(ref int _hours)
+        public static void LayerSleepSleep(ref int _hours)
         {
-            SleepPatch.Sleep(_hours: ref _hours);
+            SleepPatch.SleepPrefix(_hours: ref _hours);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int) })]
+        public static void CharaOnSleep(ref int power, int days)
+        {
+            CharaPatch.OnSleepPrefix(power: ref power, days: days);
         }
         
-        [HarmonyPostfix]
-        [HarmonyPatch(declaringType: typeof(UIContextMenuManager), methodName: nameof(UIContextMenuManager.Create))]
-        public static void UIContextMenuManager_Create(UIContextMenuManager __instance, string menuName = "ContextMenu", bool destroyOnHide = true)
+        [HarmonyPrefix]
+        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
+        public static void LayerSleepAdvance()
         {
-            UIContextMenuManagerPatch.Create(__instance: __instance, menuName: menuName, destroyOnHide: destroyOnHide);
+            LayerSleepPatch.AdvancePrefix();
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(declaringType: typeof(RecipeManager), methodName: nameof(RecipeManager.GetRandomRecipe))]
+        public static void RecipeManagerGetRandomRecipe(ref bool onlyUnlearned)
+        {
+            RecipeManagerPatch.GetRandomRecipePrefix(onlyUnlearned: ref onlyUnlearned);
         }
     }
 }

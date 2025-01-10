@@ -1,154 +1,160 @@
 ﻿using BepInEx.Configuration;
 using UnityEngine;
+using System.IO;
 
 namespace BetterSleep
 {
     internal static class BetterSleepConfig
     {
-        internal static ConfigEntry<bool> EnableMenu;
-        internal static ConfigEntry<bool> EnableBetterSleepMod;
         internal static ConfigEntry<bool> EnableCanSleep;
-        internal static ConfigEntry<bool> CanSleep;
-        internal static ConfigEntry<bool> EnableSleepHours;
         internal static ConfigEntry<int> SleepHours;
-        internal static ConfigEntry<bool> EnableIgnoreAutoSave;
-        internal static ConfigEntry<bool> IgnoreAutoSave;
+        internal static ConfigEntry<bool> EnableAutoSave;
         internal static ConfigEntry<KeyCode> IncreaseSleepHoursKey;
         internal static ConfigEntry<KeyCode> DecreaseSleepHoursKey;
         internal static ConfigEntry<bool> EnableSleepPowerMultiplier;
         internal static ConfigEntry<int> SleepPowerMultiplier;
+        internal static ConfigEntry<bool> EnableOnlyUnlearnedRecipes;
         internal static ConfigEntry<bool> EnableCanSleepDuringMeditate;
-        internal static ConfigEntry<bool> CanSleepDuringMeditate;
+        
+        public static string XmlPath { get; private set; }
+        public static string TranslationXlsxPath { get; private set; }
         
         internal static void LoadConfig(ConfigFile config)
         {
-            EnableMenu = config.Bind(
-                section: ModInfo.Name,
-                key: "Enable Menu",
-                defaultValue: true,
-                description: "Enable or disable the in-game configuration menu for the mod.\n" +
-                             "Set to 'true' to allow access to the menu, or 'false' to disable it.\n" +
-                             "ゲーム内の設定メニューを有効または無効にします。\n" +
-                             "'true' に設定するとメニューにアクセスでき、'false' に設定すると無効になります。");
-            
-            EnableBetterSleepMod = config.Bind(
-                section: ModInfo.Name,
-                key: "Enable Better Sleep Mod",
-                defaultValue: true,
-                description: "Enable or disable the Better Sleep mod.\n" +
-                             "Set to 'true' to activate the mod, or 'false' to keep the game unchanged.\n" +
-                             "ベター・スリープMODを有効または無効にします。\n" +
-                             "'true' にするとMODが有効になり、'false' にするとゲームの通常の挙動になります。");
-
             EnableCanSleep = config.Bind(
                 section: ModInfo.Name,
                 key: "Enable Can Sleep",
                 defaultValue: true,
-                description: "Enable or disable the custom 'Can Sleep' behavior.\n" +
-                             "Set to 'true' to use the custom Can Sleep logic, or 'false' to disable it.\n" +
-                             "カスタムの「眠れるかどうか」の挙動を有効または無効にします。\n" +
-                             "'true' にするとカスタムロジックが使用され、'false' にすると無効になります。");
-
-            CanSleep = config.Bind(
-                section: ModInfo.Name,
-                key: "Can Sleep",
-                defaultValue: true,
-                description: "Control whether the player character is allowed to sleep.\n" +
-                             "Set to 'true' to allow sleeping anytime, or 'false' to disable sleeping completely.\n" +
-                             "プレイヤーキャラクターがいつでも眠れるかどうかを設定します。\n" +
-                             "'true' にすると常に眠ることができ、'false' にすると完全に眠れなくなります。");
-
-            EnableSleepHours = config.Bind(
-                section: ModInfo.Name,
-                key: "Enable Sleep Hours",
-                defaultValue: true,
-                description: "Enable or disable setting custom sleep hours.\n" +
-                             "Set to 'true' to allow customizing sleep hours, or 'false' to disable this option.\n" +
-                             "カスタム睡眠時間の設定を有効または無効にします。\n" +
-                             "'true' にすると睡眠時間をカスタマイズでき、'false' にすると無効になります。");
+                description: "Enable or disable the ability for the player character to sleep anytime.\n" +
+                             "Set to 'true' to allow sleeping anytime, or 'false' to use the default sleep behavior.\n" +
+                             "プレイヤーキャラクターがいつでも眠れるようにするかどうかを有効または無効にします。\n" +
+                             "'true' に設定するといつでも眠ることができ、'false' に設定するとデフォルトの睡眠挙動が使用されます。\n" +
+                             "启用或禁用玩家角色随时睡觉的能力。\n" +
+                             "设置为 'true' 即允许随时睡觉，设置为 'false' 即恢复默认睡眠行为。"
+            );
 
             SleepHours = config.Bind(
                 section: ModInfo.Name,
                 key: "Sleep Hours",
                 defaultValue: 6,
-                description: "Set the number of hours slept during sleep events.\n" +
-                             "You can also adjust this value in-game by pressing the configured keys.\n" +
-                             "睡眠イベントでの睡眠時間を設定します。\n" +
-                             "設定されたキーを使ってゲーム内でこの値を調整することもできます。");
-
-            EnableIgnoreAutoSave = config.Bind(
-                section: ModInfo.Name,
-                key: "Enable Ignore Auto Save",
-                defaultValue: true,
-                description: "Enable or disable the 'Ignore Auto Save' feature.\n" +
-                             "Set to 'true' to allow ignoring autosaves during sleep, or 'false' to always autosave.\n" +
-                             "「オートセーブを無視」を有効または無効にします。\n" +
-                             "'true' にすると睡眠中にオートセーブを無視し、'false' にすると常にオートセーブされます。");
-
-            IgnoreAutoSave = config.Bind(
-                section: ModInfo.Name,
-                key: "Ignore Auto Save",
-                defaultValue: false,
-                description: "Control whether autosaving is skipped during sleep events.\n" +
-                             "Set to 'true' to skip autosaving during sleep, or 'false' to keep autosaving enabled.\n" +
-                             "睡眠イベント中にオートセーブをスキップするかどうかを設定します。\n" +
-                             "'true' にすると睡眠中のオートセーブがスキップされ、'false' にするとオートセーブが有効のままになります。");
-
+                description: "Set the number of hours the player character sleeps during sleep events.\n" +
+                             "You can adjust this value in-game using the configured keys.\n" +
+                             "睡眠イベント中にプレイヤーキャラクターが眠る時間を設定します。\n" +
+                             "ゲーム内で設定したキーを使ってこの値を調整できます。\n" +
+                             "设置玩家角色在睡眠事件中睡觉的小时数。\n" +
+                             "可以在游戏中使用配置的按键调整此值。"
+            );
+            
             IncreaseSleepHoursKey = config.Bind(
                 section: ModInfo.Name,
                 key: "Increase Sleep Hours Key",
                 defaultValue: KeyCode.Equals,
-                description: "Key to increase the sleep hours in-game.\n" +
-                             "ゲーム内で睡眠時間を増やすためのキーを設定します。");
+                description: "Set the key to increase the sleep hours during gameplay.\n" +
+                             "ゲームプレイ中に睡眠時間を増やすためのキーを設定します。\n" +
+                             "设置在游戏中增加睡眠时间的按键。"
+            );
 
             DecreaseSleepHoursKey = config.Bind(
                 section: ModInfo.Name,
                 key: "Decrease Sleep Hours Key",
                 defaultValue: KeyCode.Minus,
-                description: "Key to decrease the sleep hours in-game.\n" +
-                             "ゲーム内で睡眠時間を減らすためのキーを設定します。");
+                description: "Set the key to decrease the sleep hours during gameplay.\n" +
+                             "ゲームプレイ中に睡眠時間を減らすためのキーを設定します。\n" +
+                             "设置在游戏中减少睡眠时间的按键。"
+            );
+
+            EnableAutoSave = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Auto Save",
+                defaultValue: true,
+                description: "Set whether the game automatically saves during sleep events.\n" +
+                             "Set to 'true' to enable autosaving during sleep, or 'false' to disable this behavior.\n" +
+                             "睡眠イベント中にゲームが自動的に保存されるかどうかを設定します。\n" +
+                             "'true' に設定すると睡眠中に自動保存が有効になり、'false' に設定するとこの機能が無効になります。\n" +
+                             "设置游戏在睡眠事件期间是否自动保存。\n" +
+                             "设置为 'true' 即在睡眠时启用自动保存，设置为 'false' 即禁用此行为。"
+            );
 
             EnableSleepPowerMultiplier = config.Bind(
                 section: ModInfo.Name,
                 key: "Enable Sleep Power Multiplier",
-                defaultValue: true,
+                defaultValue: false,
                 description: "Enable or disable the sleep power multiplier.\n" +
-                             "Set to 'true' to activate the multiplier, or 'false' to disable it.\n" +
+                             "Set to 'true' to apply the multiplier during sleep, or 'false' to use default recovery values.\n" +
                              "睡眠中のパワー回復倍率を有効または無効にします。\n" +
-                             "'true' にすると倍率が有効になり、'false' にすると無効になります。");
+                             "'true' に設定すると睡眠中に倍率が適用され、'false' に設定するとデフォルトの回復値が使用されます。\n" +
+                             "启用或禁用睡眠力量倍率。\n" +
+                             "设置为 'true' 可在睡眠期间应用倍率，设置为 'false' 则使用默认恢复值。"
+            );
 
             SleepPowerMultiplier = config.Bind(
                 section: ModInfo.Name,
                 key: "Sleep Power Multiplier",
                 defaultValue: 1,
-                description: "Multiplier for the power value during sleep. Must be a whole number.\n" +
-                             "This multiplier affects the following:\n" +
+                description: "Adjust the power multiplier applied during sleep. Must be a whole number.\n" +
+                             "This multiplier affects:\n" +
                              "- HP healing\n" +
                              "- Stamina recovery\n" +
                              "- Mana restoration\n" +
-                             "睡眠中のパワー値に乗じる倍率を設定します（整数のみ）。\n" +
-                             "これには以下の効果があります:\n" +
+                             "睡眠中に適用されるパワー回復倍率を設定します（整数のみ）。\n" +
+                             "この倍率は以下に影響します:\n" +
                              "- HP回復\n" +
                              "- スタミナ回復\n" +
-                             "- マナ回復");
-
+                             "- マナ回復\n" +
+                             "调整睡眠期间的力量恢复倍率（必须为整数）。\n" +
+                             "此倍率会影响以下内容：\n" +
+                             "- HP恢复\n" +
+                             "- 耐力恢复\n" +
+                             "- 法力恢复。"
+            );
+            
+            EnableOnlyUnlearnedRecipes = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Only Unlearned Recipes",
+                defaultValue: false,
+                description: "Prioritize unlearned recipes when the player sleeps.\n" +
+                             "Set to 'true' to prioritize unlearned recipes, or 'false' to allow learned recipes.\n" +
+                             "プレイヤーが眠るときに未習得のレシピを優先します。\n" +
+                             "'true' に設定すると未習得のレシピが優先され、'false' に設定すると習得済みのレシピも選択されます。\n" +
+                             "玩家在睡觉时优先选择未学习的配方。\n" +
+                             "设置为 'true' 时优先未学习的配方，设置为 'false' 时允许已学习的配方。"
+            );
+            
             EnableCanSleepDuringMeditate = config.Bind(
                 section: ModInfo.Name,
                 key: "Enable Can Sleep During Meditate",
-                defaultValue: true,
-                description: "Enable or disable sleep during Meditate.\n" +
-                             "Set to 'true' to allow Better Sleep mod behavior during Meditate, or 'false' to use default behavior.\n" +
-                             "瞑想中に睡眠を有効または無効にします。\n" +
-                             "'true' にするとベター・スリープの動作が瞑想中でも有効になり、'false' にすると通常の睡眠動作になります。");
-            
-            CanSleepDuringMeditate = config.Bind(
-                section: ModInfo.Name,
-                key: "Can Sleep During Meditate",
                 defaultValue: false,
-                description: "Control whether the player can sleep during Meditate.\n" +
-                             "Set to 'true' to allow sleeping during Meditate, or 'false' to disable it.\n" +
-                             "瞑想中に睡眠できるかどうかを設定します。\n" +
-                             "'true' にすると瞑想中でも眠れるようになり、'false' にすると無効になります。");
+                description: "Enable or disable the ability to sleep anytime during Meditate.\n" +
+                             "Set to 'true' to allow sleeping anytime during Meditate, or 'false' to disable it.\n" +
+                             "瞑想中にいつでも睡眠できるようにするかどうかを有効または無効にします。\n" +
+                             "'true' に設定すると瞑想中でもいつでも睡眠できるようになり、'false' に設定すると無効になります。\n" +
+                             "启用或禁用在冥想时随时睡觉的能力。\n" +
+                             "设置为 'true' 即可在冥想时随时睡觉，设置为 'false' 则禁用此功能。"
+            );
+        }
+        
+        public static void InitializeXmlPath(string xmlPath)
+        {
+            if (File.Exists(path: xmlPath))
+            {
+                XmlPath = xmlPath;
+            }
+            else
+            {
+                XmlPath = string.Empty;
+            }
+        }
+        
+        public static void InitializeTranslationXlsxPath(string xlsxPath)
+        {
+            if (File.Exists(path: xlsxPath))
+            {
+                TranslationXlsxPath = xlsxPath;
+            }
+            else
+            {
+                TranslationXlsxPath = string.Empty;
+            }
         }
     }
 }
