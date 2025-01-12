@@ -10,7 +10,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "2.0.0.0";
+        internal const string Version = "2.0.1.0";
         internal const string ModOptionsGuid = "evilmask.elinplugins.modoptions";
         internal const string ModOptionsAssemblyName = "ModOptions";
     }

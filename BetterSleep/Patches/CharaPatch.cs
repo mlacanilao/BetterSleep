@@ -20,6 +20,13 @@ namespace BetterSleep.Patches
                 __result = true;
                 return false;
             }
+            
+            if (enableCanSleepDuringMeditate == false &&
+                __instance.ai is AI_Meditate == true)
+            {
+                __result = false;
+                return false;
+            }
 
             return true;
         }

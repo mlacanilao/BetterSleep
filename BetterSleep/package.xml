@@ -11,6 +11,7 @@
     [h1] Features [/h1]
     [list]
     [*]Allows sleeping anytime, including during Meditate.
+    [*]If "Can Sleep During Meditate" is disabled, the player will not sleep at all when using the Meditate or Rest skill.
     [*]Adjust sleep duration (e.g., "Sleep Hours").
     [*]Customize stat recovery multipliers for HP, stamina, and mana during sleep.
     [*]Enable or disable autosave during sleep events.
@@ -38,6 +39,7 @@
     [h1] 特徴 [/h1]
     [list]
     [*]瞑想中を含め、いつでも眠ることができる機能を追加します。
+    [*]「瞑想中に眠れるようにする」を無効にすると、瞑想や休憩スキル使用時には一切眠らなくなります。
     [*]睡眠時間を調整可能（例：「睡眠時間」設定）。
     [*]睡眠中のHP、スタミナ、マナ回復倍率をカスタマイズ可能。
     [*]睡眠イベント中の自動保存の有効化または無効化。
