@@ -14,17 +14,24 @@ namespace BetterSleep
         }
         
         [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
-        public static void LayerSleepSleep(ref int _hours)
-        {
-            SleepPatch.SleepPrefix(_hours: ref _hours);
-        }
-
-        [HarmonyPrefix]
         [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int) })]
         public static void CharaOnSleep(ref int power, int days)
         {
             CharaPatch.OnSleepPrefix(power: ref power, days: days);
+        }
+        
+        [HarmonyPostfix]
+        [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.Sleep))]
+        public static void CharaSleep(Chara __instance)
+        {
+            CharaPatch.SleepPostfix(__instance: __instance);
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
+        public static void LayerSleepSleep(ref int _hours)
+        {
+            SleepPatch.SleepPrefix(_hours: ref _hours);
         }
         
         [HarmonyPrefix]

@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace BetterSleep.Patches
 {
     public class CharaPatch
@@ -39,6 +42,19 @@ namespace BetterSleep.Patches
             {
                 int multiplier = BetterSleepConfig.SleepPowerMultiplier?.Value ?? 1;
                 power *= multiplier;
+            }
+        }
+        
+        public static void SleepPostfix(Chara __instance)
+        {
+            bool enableSleepDelay = BetterSleepConfig.EnableSleepDelay?.Value ?? false;
+            int customSleepDelayTurns = BetterSleepConfig.SleepDelayTurns?.Value ?? 15;
+            
+            ConSleep consleep = __instance.conditions?.FirstOrDefault(c => c is ConSleep) as ConSleep;
+            if (consleep != null && 
+                enableSleepDelay == true)
+            {
+                consleep.pcSleep = Math.Max(1, customSleepDelayTurns);
             }
         }
     }

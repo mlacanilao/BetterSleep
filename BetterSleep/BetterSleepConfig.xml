@@ -35,8 +35,16 @@
                 <tooltip>tooltip03</tooltip>
             </toggle>
             <slider id="sleepPowerMultiplierSlider" min="1" max="10" buttons="true"></slider>
+
+            <topic>topic03</topic>
+            <toggle id="enableSleepDelayToggle">
+                <contentId>toggle06</contentId>
+                <tooltip>tooltip06</tooltip>
+            </toggle>
+            <slider id="sleepDelayTurnsSlider" min="1" max="15" buttons="true">slider02</slider>
         </vlayout>
     </hlayout>
+    
     <hlayout id="hlayout02">
         <vlayout id="vlayout03" border="true">
             <title>title03</title>

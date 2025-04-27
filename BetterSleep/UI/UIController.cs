@@ -37,16 +37,9 @@ namespace BetterSleep.UI
                     {
                         controller.SetTranslationsFromXslx(path: BetterSleepConfig.TranslationXlsxPath);
                     }
-                    
-                    SetTranslations(controller: controller);
                     RegisterEvents(controller: controller);
                 }
             }
-        }
-
-        private static void SetTranslations(ModOptionController controller)
-        {
-            
         }
 
         private static void RegisterEvents(ModOptionController controller)
@@ -124,6 +117,24 @@ namespace BetterSleep.UI
                 {
                     sleepPowerMultiplierSlider.Title = value.ToString();
                     BetterSleepConfig.SleepPowerMultiplier.Value = (int)value;
+                };
+                
+                var enableSleepDelayToggle = builder.GetPreBuild<OptToggle>(id: "enableSleepDelayToggle");
+                enableSleepDelayToggle.Checked = BetterSleepConfig.EnableSleepDelay.Value;
+                enableSleepDelayToggle.OnValueChanged += isChecked =>
+                {
+                    BetterSleepConfig.EnableSleepDelay.Value = isChecked;
+                };
+                
+                var sleepDelayTurnsSlider = builder.GetPreBuild<OptSlider>(id: "sleepDelayTurnsSlider");
+                var sleepDelayTurnsSliderTitle = sleepDelayTurnsSlider.Title;
+                sleepDelayTurnsSlider.Title = $"{BetterSleepConfig.SleepDelayTurns.Value} {sleepDelayTurnsSliderTitle}";
+                sleepDelayTurnsSlider.Value = BetterSleepConfig.SleepDelayTurns.Value;
+                sleepDelayTurnsSlider.Step = 1;
+                sleepDelayTurnsSlider.OnValueChanged += value =>
+                {
+                    BetterSleepConfig.SleepDelayTurns.Value = (int)value;
+                    sleepDelayTurnsSlider.Title = $"{BetterSleepConfig.SleepDelayTurns.Value} {sleepDelayTurnsSliderTitle}";
                 };
             };
         }

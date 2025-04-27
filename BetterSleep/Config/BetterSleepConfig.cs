@@ -15,6 +15,8 @@ namespace BetterSleep
         internal static ConfigEntry<int> SleepPowerMultiplier;
         internal static ConfigEntry<bool> EnableOnlyUnlearnedRecipes;
         internal static ConfigEntry<bool> EnableCanSleepDuringMeditate;
+        internal static ConfigEntry<bool> EnableSleepDelay;
+        internal static ConfigEntry<int> SleepDelayTurns;
         
         public static string XmlPath { get; private set; }
         public static string TranslationXlsxPath { get; private set; }
@@ -130,6 +132,30 @@ namespace BetterSleep
                              "'true' に設定すると瞑想中でもいつでも睡眠できるようになり、'false' に設定すると無効になります。\n" +
                              "启用或禁用在冥想时随时睡觉的能力。\n" +
                              "设置为 'true' 即可在冥想时随时睡觉，设置为 'false' 则禁用此功能。"
+            );
+            
+            EnableSleepDelay = config.Bind(
+                section: ModInfo.Name,
+                key: "Enable Sleep Delay",
+                defaultValue: false,
+                description: "Enable or disable custom sleep delay turns before the player fully sleeps.\n" +
+                             "Set to 'true' to control how many turns it takes to fall asleep after starting sleep.\n" +
+                             "プレイヤーが眠り始めた後、完全に眠るまでのターン数をカスタマイズできるかどうかを設定します。\n" +
+                             "'true' に設定すると、眠るまでのターン数を制御できます。\n" +
+                             "启用或禁用玩家完全入睡前的自定义延迟回合数。\n" +
+                             "设置为 'true' 后可控制入睡所需的回合数。"
+            );
+
+            SleepDelayTurns = config.Bind(
+                section: ModInfo.Name,
+                key: "Sleep Delay Turns",
+                defaultValue: 15,
+                description: "Set the number of turns it takes before the player character fully falls asleep.\n" +
+                             "Minimum 1. This affects how fast sleep triggers after starting.\n" +
+                             "プレイヤーキャラクターが完全に眠るまでに必要なターン数を設定します（最小1）。\n" +
+                             "睡眠開始後、眠りに入るまでの速度に影響します。\n" +
+                             "设置玩家角色完全入睡所需的回合数（最小1）。\n" +
+                             "影响开始睡觉后入睡的速度。"
             );
         }
         

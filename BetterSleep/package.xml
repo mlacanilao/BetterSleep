@@ -16,6 +16,7 @@
     [*]Customize stat recovery multipliers for HP, stamina, and mana during sleep.
     [*]Enable or disable autosave during sleep events.
     [*]Prioritize unlearned recipes learned during sleep.
+    [*]Customize the number of turns before the player character fully falls asleep.
     [*]Includes localization for English, Japanese, and Chinese.
     [/list]
 
@@ -31,10 +32,8 @@
     [h1] Configuration File Location [/h1]
     If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
-
-    [img]https://steamuserimages-a.akamaihd.net/ugc/5166011152987681/13849BC6736C448C734D7A52FC9C00A1D84BA8C1/?imw=5000&amp;imh=5000&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=false.png[/img]
-
-    Supports Game Version: 0.23.74
+    
+    Supports Game Version: 0.23.129
 
     [h1] 特徴 [/h1]
     [list]
@@ -44,6 +43,7 @@
     [*]睡眠中のHP、スタミナ、マナ回復倍率をカスタマイズ可能。
     [*]睡眠イベント中の自動保存の有効化または無効化。
     [*]睡眠中に未習得のレシピを優先して学習します。
+    [*]プレイヤーキャラクターが完全に眠るまでのターン数をカスタマイズ可能。
     [*]英語、日本語、中国語の多言語サポートを提供します。
     [/list]
 
@@ -59,12 +59,10 @@
     [h1] 設定ファイルの場所 [/h1]
     必要に応じて、以下の場所から設定ファイルを直接編集することもできます：
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
-
-    [img]https://steamuserimages-a.akamaihd.net/ugc/5166011152987762/FFB3CAC8F8A1CF844A6F80C5C4619B464F51A33C/?imw=5000&amp;imh=5000&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=false.png[/img]
-
-    対応ゲームバージョン: 0.23.74
+    
+    対応ゲームバージョン: 0.23.129
   </description>
   <tags>Cheat</tags>
   <visibility>Public</visibility>
-  <version>0.23.74</version>
+  <version>0.23.129</version>
 </Meta>
