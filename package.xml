@@ -32,8 +32,9 @@
     [h1] Configuration File Location [/h1]
     If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
-    
-    Supports Game Version: 0.23.129
+
+    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.229%20Stable-green [/img]
+    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.234%20Nightly-green [/img]
 
     [h1] 特徴 [/h1]
     [list]
@@ -59,10 +60,11 @@
     [h1] 設定ファイルの場所 [/h1]
     必要に応じて、以下の場所から設定ファイルを直接編集することもできます：
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
-    
-    対応ゲームバージョン: 0.23.129
+
+    [img] https://img.shields.io/badge/対応ゲームバージョン対応ゲームバージョン-EA%2023.229%20Stable-green [/img]
+    [img] https://img.shields.io/badge/対応ゲームバージョン対応ゲームバージョン-EA%2023.234%20Nightly-green [/img]
   </description>
   <tags>Cheat</tags>
   <visibility>Public</visibility>
-  <version>0.23.129</version>
+  <version>0.23.229</version>
 </Meta>

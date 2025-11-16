@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using BepInEx;
 using HarmonyLib;
 using UnityEngine;
@@ -10,7 +12,7 @@ namespace BetterSleep
     {
         internal const string Guid = "omegaplatinum.elin.bettersleep";
         internal const string Name = "Better Sleep";
-        internal const string Version = "2.1.0.0";
+        internal const string Version = "2.2.0.0";
         internal const string ModOptionsGuid = "evilmask.elinplugins.modoptions";
         internal const string ModOptionsAssemblyName = "ModOptions";
     }
@@ -20,13 +22,17 @@ namespace BetterSleep
     {
         internal static BetterSleep Instance { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             Instance = this;
             
             BetterSleepConfig.LoadConfig(config: Config);
             
-            Harmony.CreateAndPatchAll(type: typeof(Patcher), harmonyInstanceId: ModInfo.Guid);
+            // old
+            // Harmony.CreateAndPatchAll(type: typeof(Patcher), harmonyInstanceId: ModInfo.Guid);
+            
+            var harmony = new Harmony(id: ModInfo.Guid);
+            harmony.PatchAll(assembly: typeof(BetterSleep).Assembly);
             
             if (IsModOptionsInstalled())
             {

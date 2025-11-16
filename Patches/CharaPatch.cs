@@ -50,11 +50,11 @@ namespace BetterSleep.Patches
             bool enableSleepDelay = BetterSleepConfig.EnableSleepDelay?.Value ?? false;
             int customSleepDelayTurns = BetterSleepConfig.SleepDelayTurns?.Value ?? 15;
             
-            ConSleep consleep = __instance.conditions?.FirstOrDefault(c => c is ConSleep) as ConSleep;
+            ConSleep consleep = __instance.conditions?.FirstOrDefault(predicate: c => c is ConSleep) as ConSleep;
             if (consleep != null && 
                 enableSleepDelay == true)
             {
-                consleep.pcSleep = Math.Max(1, customSleepDelayTurns);
+                consleep.pcSleep = Math.Max(val1: 1, val2: customSleepDelayTurns);
             }
         }
     }
