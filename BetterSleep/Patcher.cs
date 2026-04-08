@@ -1,92 +1,81 @@
-using System.Reflection;
+using System;
+using System.Collections.Generic;
 using BetterSleep.Patches;
 using HarmonyLib;
 
-namespace BetterSleep
+namespace BetterSleep;
+
+[HarmonyPatch]
+internal static class Patcher
 {
-    [HarmonyPatch]
-    public class Patcher
+    [HarmonyPrefix]
+    [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.CanSleep))]
+    public static bool CharaCanSleep(Chara __instance, ref bool __result)
     {
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.CanSleep))]
-        public static bool CharaCanSleep(Chara __instance, ref bool __result)
-        {
-            return CharaPatch.CanSleepPrefix(__instance: __instance, __result: ref __result);
-        }
-        
-        [HarmonyPatch]
-        public class CharaOnSleepPatch
-        {
-            static MethodBase TargetMethod()
-            {
-                MethodBase unstable = AccessTools.Method(
-                    type: typeof(Chara),
-                    name: nameof(Chara.OnSleep),
-                    parameters: new[] { typeof(int), typeof(int), typeof(bool) }
-                );
+        return CharaPatch.CanSleepPrefix(__instance: __instance, __result: ref __result);
+    }
 
-                if (unstable != null)
-                {
-                    BetterSleep.Log(payload: "Patching Chara.OnSleep(int, int, bool)");
-                    return unstable;
-                }
+    [HarmonyPrefix]
+    [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int), typeof(bool) })]
+    public static void CharaOnSleep(ref int power)
+    {
+        CharaPatch.OnSleepPrefix(power: ref power);
+    }
 
-                MethodBase stable = AccessTools.Method(
-                    type: typeof(Chara),
-                    name: nameof(Chara.OnSleep),
-                    parameters: new[] { typeof(int), typeof(int) }
-                );
+    [HarmonyPostfix]
+    [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.Sleep))]
+    public static void CharaSleep(Chara __instance)
+    {
+        CharaPatch.SleepPostfix(__instance: __instance);
+    }
 
-                if (stable != null)
-                {
-                    BetterSleep.Log(payload: "Patching Chara.OnSleep(int, int)");
-                    return stable;
-                }
+    [HarmonyTranspiler]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.OnAfterInit))]
+    public static IEnumerable<CodeInstruction> LayerSleepOnAfterInit(IEnumerable<CodeInstruction> instructions)
+    {
+        return LayerSleepPatch.OnAfterInitTranspiler(instructions: instructions);
+    }
 
-                BetterSleep.Log(payload: "Chara.OnSleep not found, skipping patch");
-                return null;
-            }
+    [HarmonyPrefix]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
+    public static void LayerSleepSleepPrefix(ref int _hours)
+    {
+        SleepPatch.SleepPrefix(_hours: ref _hours);
+    }
 
-            [HarmonyPrefix]
-            public static void Prefix(ref int power, int days)
-            {
-                CharaPatch.OnSleepPrefix(power: ref power, days: days);
-            }
-        }
-        
-        // [HarmonyPrefix]
-        // [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.OnSleep), argumentTypes: new[] { typeof(int), typeof(int) })]
-        // public static void CharaOnSleep(ref int power, int days)
-        // {
-        //     CharaPatch.OnSleepPrefix(power: ref power, days: days);
-        // }
-        
-        [HarmonyPostfix]
-        [HarmonyPatch(declaringType: typeof(Chara), methodName: nameof(Chara.Sleep))]
-        public static void CharaSleep(Chara __instance)
-        {
-            CharaPatch.SleepPostfix(__instance: __instance);
-        }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
-        public static void LayerSleepSleep(ref int _hours)
-        {
-            SleepPatch.SleepPrefix(_hours: ref _hours);
-        }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
-        public static void LayerSleepAdvance()
-        {
-            LayerSleepPatch.AdvancePrefix();
-        }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(declaringType: typeof(RecipeManager), methodName: nameof(RecipeManager.GetRandomRecipe))]
-        public static void RecipeManagerGetRandomRecipe(ref bool onlyUnlearned)
-        {
-            RecipeManagerPatch.GetRandomRecipePrefix(onlyUnlearned: ref onlyUnlearned);
-        }
+    [HarmonyTranspiler]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Sleep))]
+    public static IEnumerable<CodeInstruction> LayerSleepSleep(IEnumerable<CodeInstruction> instructions)
+    {
+        return LayerSleepPatch.SleepTranspiler(instructions: instructions);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
+    public static void LayerSleepAdvancePrefix(out bool __state)
+    {
+        LayerSleepPatch.AdvancePrefix(__state: out __state);
+    }
+
+    [HarmonyFinalizer]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
+    public static Exception LayerSleepAdvanceFinalizer(Exception __exception, bool __state)
+    {
+        LayerSleepPatch.AdvanceFinalizer(__state: __state);
+        return __exception;
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(declaringType: typeof(LayerSleep), methodName: nameof(LayerSleep.Advance))]
+    public static IEnumerable<CodeInstruction> LayerSleepAdvance(IEnumerable<CodeInstruction> instructions)
+    {
+        return LayerSleepPatch.AdvanceTranspiler(instructions: instructions);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(declaringType: typeof(RecipeManager), methodName: nameof(RecipeManager.GetRandomRecipe))]
+    public static void RecipeManagerGetRandomRecipe(ref bool onlyUnlearned)
+    {
+        RecipeManagerPatch.GetRandomRecipePrefix(onlyUnlearned: ref onlyUnlearned);
     }
 }

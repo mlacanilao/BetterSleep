@@ -1,12 +1,11 @@
-namespace BetterSleep.Patches
+namespace BetterSleep.Patches;
+
+internal static class SleepPatch
 {
-    public class SleepPatch
+    public static void SleepPrefix(ref int _hours)
     {
-        public static void SleepPrefix(ref int _hours)
-        {
-            int sleepHours = BetterSleepConfig.SleepHours?.Value ?? 6;
-            
-            _hours = sleepHours;
-        }
+        int sleepHours = BetterSleepConfig.SleepHours?.Value ?? 6;
+
+        _hours = sleepHours;
     }
 }

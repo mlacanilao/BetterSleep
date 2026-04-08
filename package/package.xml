@@ -15,6 +15,7 @@
     [*]Adjust sleep duration (e.g., "Sleep Hours").
     [*]Customize stat recovery multipliers for HP, stamina, and mana during sleep.
     [*]Enable or disable autosave during sleep events.
+    [*]Enable or disable normal sleep simulation and the black screen transition.
     [*]Prioritize unlearned recipes learned during sleep.
     [*]Customize the number of turns before the player character fully falls asleep.
     [*]Includes localization for English, Japanese, and Chinese.
@@ -23,7 +24,7 @@
     [h1] Compatibility [/h1]
     This mod works with existing save files and does not require any manual setup.
 
-    [h1] Requirements [/h1]
+    [h1] Optional Mod [/h1]
     This mod requires the [b]Mod Options[/b] mod only for accessing the Config menu. The core functionality of this mod will still work without it. Please subscribe to the [b]Mod Options[/b] mod for menu-based configuration:
     [list]
     [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3381182341]https://steamcommunity.com/sharedfiles/filedetails/?id=3381182341[/url]
@@ -33,8 +34,7 @@
     If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.229%20Stable-green [/img]
-    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.234%20Nightly-green [/img]
+    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.287%20Stable-green [/img]
 
     [h1] 特徴 [/h1]
     [list]
@@ -43,6 +43,7 @@
     [*]睡眠時間を調整可能（例：「睡眠時間」設定）。
     [*]睡眠中のHP、スタミナ、マナ回復倍率をカスタマイズ可能。
     [*]睡眠イベント中の自動保存の有効化または無効化。
+    [*]通常の睡眠シミュレーションと暗転演出の有効化または無効化。
     [*]睡眠中に未習得のレシピを優先して学習します。
     [*]プレイヤーキャラクターが完全に眠るまでのターン数をカスタマイズ可能。
     [*]英語、日本語、中国語の多言語サポートを提供します。
@@ -51,8 +52,8 @@
     [h1] 互換性 [/h1]
     このMODは既存のセーブデータで動作し、特別な設定は不要です。
 
-    [h1] 必須MOD [/h1]
-    このMODは [b]Mod Options[/b] MOD が必要です。ただし、Config メニューにアクセスするためだけです。主要な機能はこれなしでも動作します。[b]Mod Options[/b] MOD をサブスクライブするには、以下のリンクを参照してください：
+    [h1] 任意MOD [/h1]
+    このMODで [b]Mod Options[/b] MOD が必要になるのは Config メニューにアクセスする場合のみです。主要な機能はこれなしでも動作します。メニューから設定したい場合は、以下のリンクから [b]Mod Options[/b] MOD をサブスクライブしてください：
     [list]
     [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3381182341]https://steamcommunity.com/sharedfiles/filedetails/?id=3381182341[/url]
     [/list]
@@ -61,10 +62,9 @@
     必要に応じて、以下の場所から設定ファイルを直接編集することもできます：
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    [img] https://img.shields.io/badge/対応ゲームバージョン対応ゲームバージョン-EA%2023.229%20Stable-green [/img]
-    [img] https://img.shields.io/badge/対応ゲームバージョン対応ゲームバージョン-EA%2023.234%20Nightly-green [/img]
+    [img] https://img.shields.io/badge/対応ゲームバージョン-EA%2023.287%20Stable-green [/img]
   </description>
-  <tags>Cheat</tags>
+  <tags>QoL, Cheat</tags>
   <visibility>Public</visibility>
-  <version>0.23.229</version>
+  <version>0.23.287</version>
 </Meta>
