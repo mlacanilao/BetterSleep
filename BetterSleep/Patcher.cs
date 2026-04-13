@@ -5,7 +5,6 @@ using HarmonyLib;
 
 namespace BetterSleep;
 
-[HarmonyPatch]
 internal static class Patcher
 {
     [HarmonyPrefix]
