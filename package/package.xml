@@ -10,10 +10,10 @@
 
     [h1] Features [/h1]
     [list]
-    [*]Allows sleeping anytime, including during Meditate.
-    [*]If "Can Sleep During Meditate" is disabled, the player will not sleep at all when using the Meditate or Rest skill.
+    [*]Allows sleeping anytime outside Rest, and optionally allows sleep during Rest.
+    [*]If "Enable Sleep During Rest" is disabled, the player will not sleep at all when using the Rest ability.
     [*]Adjust sleep duration (e.g., "Sleep Hours").
-    [*]Customize stat recovery multipliers for HP, stamina, and mana during sleep.
+    [*]Customize the sleep recovery multiplier for HP, stamina, and mana.
     [*]Enable or disable autosave during sleep events.
     [*]Enable or disable normal sleep simulation and the black screen transition.
     [*]Prioritize unlearned recipes learned during sleep.
@@ -34,12 +34,12 @@
     If needed, users can also edit the configuration file directly:
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.287%20Stable-green [/img]
+    [img] https://img.shields.io/badge/Supports%20Game%20Version-EA%2023.307%20Stable-green [/img]
 
     [h1] 特徴 [/h1]
     [list]
-    [*]瞑想中を含め、いつでも眠ることができる機能を追加します。
-    [*]「瞑想中に眠れるようにする」を無効にすると、瞑想や休憩スキル使用時には一切眠らなくなります。
+    [*]休憩中以外ではいつでも眠れるようにし、設定により休憩中の睡眠も有効にできます。
+    [*]「休憩中の睡眠を有効化」を無効にすると、休憩アビリティ使用時には一切眠らなくなります。
     [*]睡眠時間を調整可能（例：「睡眠時間」設定）。
     [*]睡眠中のHP、スタミナ、マナ回復倍率をカスタマイズ可能。
     [*]睡眠イベント中の自動保存の有効化または無効化。
@@ -62,9 +62,9 @@
     必要に応じて、以下の場所から設定ファイルを直接編集することもできます：
     [code] Steam\steamapps\common\Elin\BepInEx\config\omegaplatinum.elin.bettersleep.cfg [/code]
 
-    [img] https://img.shields.io/badge/対応ゲームバージョン-EA%2023.287%20Stable-green [/img]
+    [img] https://img.shields.io/badge/対応ゲームバージョン-EA%2023.307%20Stable-green [/img]
   </description>
   <tags>QoL, Cheat</tags>
   <visibility>Public</visibility>
-  <version>0.23.287</version>
+  <version>0.23.307</version>
 </Meta>

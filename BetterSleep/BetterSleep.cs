@@ -10,7 +10,7 @@ internal static class ModInfo
 {
     internal const string Guid = "omegaplatinum.elin.bettersleep";
     internal const string Name = "Better Sleep";
-    internal const string Version = "3.0.0";
+    internal const string Version = "3.0.1";
     internal const string ModOptionsGuid = "evilmask.elinplugins.modoptions";
 }
 
@@ -56,12 +56,7 @@ internal class BetterSleep : BaseUnityPlugin
             return;
         }
 
-        if (EClass.core.IsGameStarted != true)
-        {
-            return;
-        }
-
-        if (EInput.isInputFieldActive)
+        if (CanHandleHotkey() == false)
         {
             return;
         }
@@ -76,11 +71,44 @@ internal class BetterSleep : BaseUnityPlugin
         }
     }
 
+    private static bool CanHandleHotkey()
+    {
+        if (EClass.core?.IsGameStarted != true)
+        {
+            return false;
+        }
+
+        if (EClass.pc == null ||
+            EClass._zone == null)
+        {
+            LogDebug(
+                message: "Hotkey handling skipped because the player or active zone is unavailable. " +
+                    $"playerNull={EClass.pc == null}, zoneNull={EClass._zone == null}");
+            return false;
+        }
+
+        if (EInput.isInputFieldActive)
+        {
+            return false;
+        }
+
+        if (EClass.ui?.BlockInput == true ||
+            EClass.ui?.BlockActions == true)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private static void AdjustSleepHours(int adjustment)
     {
-        int newSleepHours = BetterSleepConfig.SleepHours.Value + adjustment;
-        newSleepHours = Mathf.Clamp(value: newSleepHours, min: 0, max: 12);
-        BetterSleepConfig.SleepHours.Value = newSleepHours;
+        int newSleepHours = BetterSleepConfig.GetEffectiveSleepHours() + adjustment;
+        newSleepHours = BetterSleepConfig.SetSleepHours(sleepHours: newSleepHours);
+
+        FeatureTestLog.Log(
+            feature: "Sleep Hours Hotkeys",
+            detail: "adjustment=" + adjustment.ToString() + ", effectiveHours=" + newSleepHours.ToString());
 
         ELayer.pc.TalkRaw(
             text: GetLocalizedText(

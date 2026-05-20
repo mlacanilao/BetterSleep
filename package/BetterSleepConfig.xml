@@ -39,7 +39,7 @@
                 <contentId>toggle03</contentId>
                 <tooltip>tooltip03</tooltip>
             </toggle>
-            <slider id="sleepPowerMultiplierSlider" min="1" max="10" buttons="true"></slider>
+            <slider id="sleepPowerMultiplierSlider" min="1" max="10" buttons="true">slider03</slider>
 
             <topic>topic03</topic>
             <toggle id="enableSleepDelayToggle">

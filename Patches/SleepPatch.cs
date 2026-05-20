@@ -4,8 +4,10 @@ internal static class SleepPatch
 {
     public static void SleepPrefix(ref int _hours)
     {
-        int sleepHours = BetterSleepConfig.SleepHours?.Value ?? 6;
-
-        _hours = sleepHours;
+        int effectiveSleepHours = BetterSleepConfig.GetEffectiveSleepHours();
+        _hours = effectiveSleepHours;
+        FeatureTestLog.Log(
+            feature: "Sleep Hours",
+            detail: "set LayerSleep hours to " + effectiveSleepHours.ToString());
     }
 }

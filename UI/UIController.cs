@@ -34,6 +34,7 @@ public static class UIController
         else
         {
             BetterSleep.LogError(message: $"Mod Options XML not found: {xmlPath}");
+            return;
         }
 
         if (File.Exists(path: BetterSleepConfig.TranslationXlsxPath))
@@ -52,6 +53,8 @@ public static class UIController
     {
         controller.OnBuildUI += builder =>
         {
+            bool allRequiredControlsWired = true;
+
             var enableCanSleepToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableCanSleepToggle");
             if (enableCanSleepToggle != null)
             {
@@ -61,19 +64,28 @@ public static class UIController
                     BetterSleepConfig.EnableCanSleep.Value = isChecked;
                 };
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var sleepHoursSlider = GetRequiredPreBuild<OptSlider>(builder: builder, id: "sleepHoursSlider");
             if (sleepHoursSlider != null)
             {
-                var originalTitle = sleepHoursSlider.Title;
-                sleepHoursSlider.Title = $"{BetterSleepConfig.SleepHours.Value} {originalTitle}";
-                sleepHoursSlider.Value = BetterSleepConfig.SleepHours.Value;
+                int effectiveSleepHours = BetterSleepConfig.SetSleepHours(
+                    sleepHours: BetterSleepConfig.GetEffectiveSleepHours());
+                sleepHoursSlider.Title = effectiveSleepHours.ToString();
+                sleepHoursSlider.Value = effectiveSleepHours;
                 sleepHoursSlider.Step = 1;
                 sleepHoursSlider.OnValueChanged += value =>
                 {
-                    BetterSleepConfig.SleepHours.Value = (int)value;
-                    sleepHoursSlider.Title = $"{BetterSleepConfig.SleepHours.Value} {originalTitle}";
+                    int clampedSleepHours = BetterSleepConfig.SetSleepHours(sleepHours: (int)value);
+                    sleepHoursSlider.Title = clampedSleepHours.ToString();
                 };
+            }
+            else
+            {
+                allRequiredControlsWired = false;
             }
 
             var enableAutoSaveToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableAutoSaveToggle");
@@ -85,6 +97,10 @@ public static class UIController
                     BetterSleepConfig.EnableAutoSave.Value = isChecked;
                 };
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var enableSleepSimulationToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableSleepSimulationToggle");
             if (enableSleepSimulationToggle != null)
@@ -94,6 +110,10 @@ public static class UIController
                 {
                     BetterSleepConfig.EnableSleepSimulation.Value = isChecked;
                 };
+            }
+            else
+            {
+                allRequiredControlsWired = false;
             }
 
             var enableOnlyUnlearnedRecipesToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableOnlyUnlearnedRecipesToggle");
@@ -105,6 +125,10 @@ public static class UIController
                     BetterSleepConfig.EnableOnlyUnlearnedRecipes.Value = isChecked;
                 };
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var enableCanSleepDuringMeditateToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableCanSleepDuringMeditateToggle");
             if (enableCanSleepDuringMeditateToggle != null)
@@ -114,6 +138,10 @@ public static class UIController
                 {
                     BetterSleepConfig.EnableCanSleepDuringMeditate.Value = isChecked;
                 };
+            }
+            else
+            {
+                allRequiredControlsWired = false;
             }
 
             for (int i = 1; i <= 2; i++)
@@ -132,11 +160,19 @@ public static class UIController
             {
                 SetupKeyCodeDropdown(dropdown: increaseSleepHoursDropdown, configEntry: BetterSleepConfig.IncreaseSleepHoursKey);
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var decreaseSleepHoursDropdown = GetRequiredPreBuild<OptDropdown>(builder: builder, id: "dropdown02");
             if (decreaseSleepHoursDropdown != null)
             {
                 SetupKeyCodeDropdown(dropdown: decreaseSleepHoursDropdown, configEntry: BetterSleepConfig.DecreaseSleepHoursKey);
+            }
+            else
+            {
+                allRequiredControlsWired = false;
             }
 
             var enableSleepPowerMultiplierToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableSleepPowerMultiplierToggle");
@@ -148,18 +184,28 @@ public static class UIController
                     BetterSleepConfig.EnableSleepPowerMultiplier.Value = isChecked;
                 };
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var sleepPowerMultiplierSlider = GetRequiredPreBuild<OptSlider>(builder: builder, id: "sleepPowerMultiplierSlider");
             if (sleepPowerMultiplierSlider != null)
             {
-                sleepPowerMultiplierSlider.Title = BetterSleepConfig.SleepPowerMultiplier.Value.ToString();
-                sleepPowerMultiplierSlider.Value = BetterSleepConfig.SleepPowerMultiplier.Value;
+                int sleepPowerMultiplier = BetterSleepConfig.SetSleepPowerMultiplier(
+                    sleepPowerMultiplier: BetterSleepConfig.SleepPowerMultiplier.Value);
+                sleepPowerMultiplierSlider.Title = sleepPowerMultiplier.ToString();
+                sleepPowerMultiplierSlider.Value = sleepPowerMultiplier;
                 sleepPowerMultiplierSlider.Step = 1;
                 sleepPowerMultiplierSlider.OnValueChanged += value =>
                 {
-                    sleepPowerMultiplierSlider.Title = value.ToString();
-                    BetterSleepConfig.SleepPowerMultiplier.Value = (int)value;
+                    int clampedSleepPowerMultiplier = BetterSleepConfig.SetSleepPowerMultiplier(sleepPowerMultiplier: (int)value);
+                    sleepPowerMultiplierSlider.Title = clampedSleepPowerMultiplier.ToString();
                 };
+            }
+            else
+            {
+                allRequiredControlsWired = false;
             }
 
             var enableSleepDelayToggle = GetRequiredPreBuild<OptToggle>(builder: builder, id: "enableSleepDelayToggle");
@@ -171,19 +217,35 @@ public static class UIController
                     BetterSleepConfig.EnableSleepDelay.Value = isChecked;
                 };
             }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
 
             var sleepDelayTurnsSlider = GetRequiredPreBuild<OptSlider>(builder: builder, id: "sleepDelayTurnsSlider");
             if (sleepDelayTurnsSlider != null)
             {
-                var sleepDelayTurnsSliderTitle = sleepDelayTurnsSlider.Title;
-                sleepDelayTurnsSlider.Title = $"{BetterSleepConfig.SleepDelayTurns.Value} {sleepDelayTurnsSliderTitle}";
-                sleepDelayTurnsSlider.Value = BetterSleepConfig.SleepDelayTurns.Value;
+                int sleepDelayTurns = BetterSleepConfig.SetSleepDelayTurns(
+                    sleepDelayTurns: BetterSleepConfig.SleepDelayTurns.Value);
+                sleepDelayTurnsSlider.Title = sleepDelayTurns.ToString();
+                sleepDelayTurnsSlider.Value = sleepDelayTurns;
                 sleepDelayTurnsSlider.Step = 1;
                 sleepDelayTurnsSlider.OnValueChanged += value =>
                 {
-                    BetterSleepConfig.SleepDelayTurns.Value = (int)value;
-                    sleepDelayTurnsSlider.Title = $"{BetterSleepConfig.SleepDelayTurns.Value} {sleepDelayTurnsSliderTitle}";
+                    int clampedSleepDelayTurns = BetterSleepConfig.SetSleepDelayTurns(sleepDelayTurns: (int)value);
+                    sleepDelayTurnsSlider.Title = clampedSleepDelayTurns.ToString();
                 };
+            }
+            else
+            {
+                allRequiredControlsWired = false;
+            }
+
+            if (allRequiredControlsWired == true)
+            {
+                FeatureTestLog.Log(
+                    feature: "Mod Options UI",
+                    detail: "registered BetterSleep Mod Options controls");
             }
         };
     }
